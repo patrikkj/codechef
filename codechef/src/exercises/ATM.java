@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 public class ATM {
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		final double FEE = 0.5;
 		
-		String line = bufferedReader.readLine();
+		String line = br.readLine();
 		String[] split = line.split("\\s");
 		
 		double amount = Double.parseDouble(split[0]);
@@ -22,6 +22,6 @@ public class ATM {
 		else
 			System.out.print(out);
 		
-		bufferedReader.close();
+		br.close();
 	}
 }

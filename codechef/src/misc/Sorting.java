@@ -1,28 +1,30 @@
-package exercises;
+package misc;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class TurboSort {
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int n = Integer.parseInt(br.readLine());
-		List<Integer> ints = new ArrayList<>();
-		
-		for (int i = 0; i < n; i++) {
-			ints.add(Integer.parseInt(br.readLine()));
+public class Sorting {
+	enum Algorithm {
+		Merge, R_Quick, Heap, Bubble, Insertion, Selection, 
+		Bucket, Counting, Radix, Select, R_Select;
+	}
+
+	public static <T extends Comparable<T>> List<T> sort(List<T> list, Algorithm algorithm){
+		switch (algorithm) {
+		case Merge:
+			return mergeSort(list);
+		default:
+			return null;
 		}
-		
-		ints = mergeSort(ints);
-		
-		String intString = ints.stream().map(i -> Integer.toString(i)).collect(Collectors.joining("\n", "\n", ""));
-		System.out.print(intString);
 	}
 	
+
+	public static <T> List<T> sort(List<T> list, Algorithm algorithm, Comparator<T> comparator){
+		return null;
+	}
+
 	private static <T extends Comparable<T>> List<T> mergeSort(List<T> list) {
 		if (list.size() == 1)
 			return list;
@@ -62,5 +64,10 @@ public class TurboSort {
 		merged.addAll(list2.subList(i2, size2));
 		
 		return merged;
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> ints = new ArrayList<>(Arrays.asList(3, 1, 2));
+		System.out.println(Sorting.sort(ints, Algorithm.Merge));
 	}
 }
